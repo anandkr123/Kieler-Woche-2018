@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<head>
+    <%- include('partials/head') %>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <h1 class="user__title">Find Your Companion</h1>
+
+</head>
+<body>
+
+<%- include('partials/header') %>
+<main>
+    <form class="form" >
+        <div class="form__group">
+            <input type="text" placeholder="Event Name" class="form__input" id="event-name" size="60" />
+        </div>
+        <br/>
+        <div class="form__group">
+            <input type="email" placeholder="Contact Email" class="form__input" id="event-email" size="60"/>
+        </div>
+        <br/>
+        <div class="form__group">
+            <input type="tel" placeholder="123-4567-8901" class="form__input" id="event-number" size="60" />
+        </div>
+        <br/>
+        <div class="form__group">
+            <input type="number" placeholder="Maximum Persons" min=2 class="form__input" id="event-person" width="28" />
+        </div>
+        <br/>
+        <div class="form_group">
+            <input type="date" placeholder="Choose the event Date" min="2018-06-16" max="2018-06-24" id="event-date" />
+        </div>
+        <br/>
+        <div class="form__group">
+            <textarea rows="4" cols="50" class="form__input"  id="event-motivation" >
+Motivate your companions, so that they may join you...
+</textarea>
+        </div>
+        <br/>
+        <div class="form__group">
+            <input type="url" placeholder="Share the event Link" class="form__input" id="event-link" size="100" />
+        </div>
+        <br/>
+        <button class="btn" type="button" id="Socket_button">Create Event</button>
+    </form>
+
+    </div>
+</main>
+<footer>
+    <%- include('partials/footer') %>
+</footer>
+
+
+<div class="fullscreen-bg"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+
+<script>
+    var socket=io();
+    $("#Socket_button").click(function(){            // executes the function as  a parameter
+        var eventname_v=$("#event-name").val();
+        var eventemail_v=$("#event-email").val();
+        var eventnumber_v=$("#event-number").val();
+        var eventperson_v=$('#event-person').val();
+        var eventdate_v=$("#event-date").val();
+        var eventmotivation_v=$("#event-motivation").val();
+        var eventlink_v=$("#event-link").val();
+
+        var params={
+            event_name:eventname_v,
+            event_email:eventemail_v,
+            event_number:eventnumber_v,
+            event_person:eventperson_v,
+            event_date:eventdate_v,
+            event_motivation:eventmotivation_v,
+            event_link:eventlink_v
+        }
+        socket.emit('emit_events_text',params);
+    })
+    socket.on('eventadded',function(fromserver) {
+        alert(fromserver);
+    });
+</script>
+</body>
+</html>

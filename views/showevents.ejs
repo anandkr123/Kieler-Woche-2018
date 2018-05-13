@@ -1,0 +1,39 @@
+<html>
+<head>
+<%- include('partials/head') %>
+<body>
+<%- include('partials/header') %>
+<main>
+<table border="1" cellpadding="7" cellspacing="7">
+    <tr>
+        <th width="50px">No</th>
+        <th>Event_name</th>
+        <th>Contact Email</th>
+        <th>Contact Number</th>
+        <th>Maximum Number of persons</th>
+        <th>Event Date</th>
+        <th>What's Happening </th>
+        <th>See More Info ...</th>
+    </tr>
+    <% if(data.length){
+    for(var i = 0;i < data.length;i++) { %>
+    <tr>
+        <td><%=(i+1)%></td>
+        <td><%=data[i].event_name%></td>
+        <td><%=data[i].event_email%></td>
+        <td><%=data[i].event_number%></td>
+        <td><%=data[i].event_person%></td>
+        <td><%=data[i].event_date%></td>
+        <td><%=data[i].event_motivation%></td>
+        <td><%=data[i].event_link%></td>
+    </tr>
+    <% }
+    }else{ %>
+    <tr>
+        <td colspan="3">No user</td>
+    </tr>
+    <% } %>
+</table>
+</main>
+<%- include('partials/footer') %>
+</body></html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+    <%- include('partials/head') %>
+   <h4 align="right"> <script>
+
+        var queryString = decodeURIComponent(window.location.search);
+        queryString = queryString.substring(1);
+        var queries = queryString.split("&");
+        document.write("Hello ! "+ queries );
+    </script>
+   </h4>
+</head>
+<body>
+    <%- include('partials/header') %>
+<main>
+    <div align="center"> <h1 align="right"></h1>
+    <p>Die Kieler Woche ist eine jährlich stattfindende Segelregatta, die seit Ende des 19. Jahrhunderts in Kiel ausgetragen wird. Sie gilt als eines der größten Segelsportereignisse der Welt.<br/>
+        <br/>In den letzten Jahrzehnten entwickelte sich zudem ein Volksfest an den Kaimauern der Großsegler, obwohl der Kern der Veranstaltung immer die Segelsportwettbewerbe geblieben sind. <br/>Neben den sportlichen Aspekten umfasst sie ein umfangreiches Programm mit über 2.100 Einzelveranstaltungen (2012), unter anderem Auftritte internationaler Künstler, die in rund 300 Konzerten auf 16 Bühnen Live-Musik bieten. Daneben gibt es auf kleineren Bühnen Darbietungen zahlreicher lokaler Gruppen.<br/> Jedes Jahr besuchen rund 3 Millionen Gäste die Kieler Woche, unter anderem auch zahlreiche Marineeinheiten aus über 10 Nationen (2012), über 3.500 Segler aus 36 Nationen (2012) und über ein Dutzend Städte-Delegationen (17 Delegationen aus 11 Nationen im Jahr 2012).<br/>
+
+Als maritimer Höhepunkt gilt die Windjammerparade (seit 1998 jährlich) am letzten Samstag der Festwoche, an der mehr als 100 Groß- und Traditionssegler, historische Dampfschiffe sowie Hunderte von Segelyachten teilnehmen. <br/>Zu Gast sind in jedem Jahr auch zahlreiche Marineschiffe und Segelschulschiffe aus anderen Ländern.<br/>
+
+Ein weiterer Höhepunkt ist seit 2005 die jährliche Verleihung des Weltwirtschaftlichen Preises, der vom Kieler Institut für Weltwirtschaft (IfW), der örtlichen Industrie- und Handelskammer und der Stadt Kiel gemeinsam vergeben wird. Mit dem Preis werden Vordenker einer weltoffenen, marktwirtschaftlichen Gesellschaft gewürdigt.<br/>
+
+   <br/> Die Kieler Woche endet traditionell mit dem Sternenzauber über Kiel, einem Höhenfeuerwerk. </p>
+</div>
+</main>
+    <%- include('partials/footer') %>
+
+
+</body>
+
+</html>

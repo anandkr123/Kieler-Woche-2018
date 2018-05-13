@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sailing Event</title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+  <input type="radio" checked id="toggle--login" name="toggle" class="ghost" />
+  <input type="radio" id="toggle--signup" name="toggle" class="ghost" />
+
+  <form class="form form--login framed" method="get" target="_self">
+    <h2 class="text text--centered text--omega"> <b> Kieler Woche 2018</b></br>.</h2>
+
+    <input type="text" placeholder="Username" class="input input--top" id="username-signin" />
+    <input type="password" placeholder="Password" class="input" id="password-signin" />
+    <input type="button" value="Log in" class="input input--submit" id="button-signin" />
+
+    <label for="toggle--signup" class="text text--small text--centered">New? <b>Sign up</b></label>
+  </form>
+
+  <form class="form form--signup framed" method="post">
+    <h2 class="text text--centered text--omega">Join and Explore <b> 300 Events</b> in Kiel </br>by Finding your companion.</h2>
+
+    <input type="email" placeholder="Email" class="input input--top" id="email-signup"/>
+    <input type="password" placeholder="Password" class="input" id="password-signup" />
+    <input type="text" placeholder="Username" class="input" id="username-signup" />
+    <input type="button" value="Sign up" class="input input--submit" id="button-signup"/>
+
+    <label for="toggle--login" class="text text--small text--centered">Not new? <b>Log in</b></label>
+  </form>
+
+
+
+  <div class="photo-cred">
+    <a class="text text--small" title="Check out their blog." href="http://cabinporn.com/post/125371354365/the-cabin-book-book-in-the-wild-21-in-the-us" target="_blank">Photo posted by <b>cabinporn</b></a>
+  </div>
+
+  <div class="fullscreen-bg"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+
+  <script>
+      var socket=io();
+      $("#button-signup").click(function(){            // executes the function as  a parameter
+          var username_v=$("#username-signup").val();
+          var email_v=$("#email-signup").val();
+          var password_v=$("#password-signup").val();
+
+          var params={
+              username:username_v,
+              email:email_v,
+              password:password_v
+          }
+          socket.emit('emit_signup_text',params);
+      })
+      $("#button-signin").click(function(){            // executes the function as  a parameter
+          var username_s=$("#username-signin").val();
+          var password_s=$("#password-signin").val();
+          var params={
+              username:username_s,
+              password:password_s
+          }
+          socket.emit('emit_signin_text',params);
+      })
+    socket.on('useradded',function(fromserver) {
+        alert("Please Login Below with username " + fromserver);
+    });
+      socket.on('login',function(u_name) {
+          alert("succesfull logged in");
+          var uname=u_name;
+          var queryString = "?User "+ u_name
+          window.location.href = "./home" + queryString;
+      });
+  </script>
+  </body>
+</html>
